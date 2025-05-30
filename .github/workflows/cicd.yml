@@ -3,8 +3,6 @@ name: CI/CD Pipeline
 on:
   pull_request:
     branches:
-      - develop
-      - staging
       - main
 
 jobs:
@@ -111,4 +109,3 @@ jobs:
             --cluster  "$CLUSTER_NAME" \
             --service  "$SERVICE_NAME" \
             --force-new-deployment
-            
