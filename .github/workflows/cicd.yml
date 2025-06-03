@@ -35,7 +35,7 @@ jobs:
 
       - name: Static analysis (Checkstyle)
         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=false
-        continue-on-error: true # ✅ Don't fail the build on Checkstyle violations
+        continue-on-error: true # Allow Checkstyle violations without failing build
 
   docker-build-push:
     name: Build & Push Docker Image to DockerHub
@@ -57,8 +57,8 @@ jobs:
           context: .
           push: true
           tags: |
-            docker.io/${{ secrets.DOCKER_USERNAME }}/department_service:${{ github.sha }}
-            docker.io/${{ secrets.DOCKER_USERNAME }}/department_service:latest
+            ${{ secrets.DOCKER_USERNAME }}/department_service:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/department_service:latest
 
   deploy:
     name: Deploy to ECS
@@ -84,7 +84,6 @@ jobs:
             *)         echo "ENV=development" >> $GITHUB_ENV ;;
           esac
 
-    
       - name: Deploy to the right ECS service
         run: |
           CLUSTER_NAME="department-cluster"
@@ -94,5 +93,3 @@ jobs:
             --cluster  "$CLUSTER_NAME" \
             --service  "$SERVICE_NAME" \
             --force-new-deployment
-
-            
