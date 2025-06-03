@@ -94,6 +94,7 @@ public class DepartmentController {
   
     return ResponseEntity.noContent().build();
   }
+  
   @GetMapping("/departments/name/{name}")
 EntityModel<Department> getDepartmentByName(@PathVariable String name) {
     Department department = repository.findByName(name)
