@@ -75,12 +75,7 @@ jobs:
       - name : Determine environment
         id: env
         run: |
-          if [ "$EVENT_NAME" = "pull_request" ]; then
-            REF="$PR_BASE_REF"
-          else
-            REF="${GITHUB_REF##*/}"
-          fi
-
+          REF="${GITHUB_REF##*/}"
           case "$REF" in
             main)      echo "ENV=production"  >> $GITHUB_ENV ;;
             staging)   echo "ENV=pre-prod"    >> $GITHUB_ENV ;;
@@ -97,5 +92,3 @@ jobs:
             --cluster  "$CLUSTER_NAME" \
             --service  "$SERVICE_NAME" \
             --force-new-deployment
-
-            
