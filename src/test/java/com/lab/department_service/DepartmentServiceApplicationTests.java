@@ -40,5 +40,6 @@ class DepartmentServiceApplicationTests {
                 .andExpect(jsonPath("$.name").value("HR"))
                 .andExpect(jsonPath("$.location").value("First Floor"));
     }
+
 	
 }
