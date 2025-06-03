@@ -110,3 +110,6 @@ jobs:
             --cluster  "$CLUSTER_NAME" \
             --service  "$SERVICE_NAME" \
             --force-new-deployment
+
+
+            
