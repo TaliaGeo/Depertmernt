@@ -84,6 +84,7 @@ jobs:
             *)         echo "ENV=development" >> $GITHUB_ENV ;;
           esac
 
+    
       - name: Deploy to the right ECS service
         run: |
           CLUSTER_NAME="department-cluster"
